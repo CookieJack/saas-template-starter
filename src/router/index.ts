@@ -2,8 +2,17 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import { createDiscreteApi } from "naive-ui"
 import Layout from "@/layouts/index.vue"
 import Cookies from "js-cookie"
+import i18n from "@/locale"
+import {
+    HomeOutline as HomeOutlineIcon,
+    BuildOutline as BuildOutlineIcon,
+    DesktopOutline as DesktopOutlineIcon,
+    LibraryOutline as LibraryOutlineIcon
+} from "@vicons/ionicons5"
 
 const { message, loadingBar } = createDiscreteApi(["message", "loadingBar"])
+
+const { t } = i18n.global
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -12,28 +21,41 @@ const router = createRouter({
             path: "/",
             name: 'Root',
             redirect: '/dashboard',
+            meta: {
+                title: t('home.dashboard'),
+                icon: HomeOutlineIcon,
+                hidden: false
+            },
             component: Layout,
             children: [
                 {
                     path: "dashboard",
-                    name: "Dashboard",
-                    component: () => import("../views/dashboard/index.vue")
-                },
-                {
-                    path: "workbench",
-                    name: "Workbench",
-                    component: () => import("@/views/workbench/index.vue")
+                    name: 'Dashboard',
+                    meta: {
+                        title: t('home.workbench'),
+                        icon: LibraryOutlineIcon,
+                        hidden: false
+                    },
+                    component: () => import("@/views/dashboard/index.vue")
                 }
             ]
         },
         {
             path: '/login',
             name: 'Login',
-            component: () => import("../views/login/index.vue")
+            meta: {
+                title: t('common.login'),
+                hidden: true
+            },
+            component: () => import("@/views/login/index.vue")
         },
         {
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
+            meta: {
+                title: t('common.not-found'),
+                hidden: true
+            },
             component: () => import("@/views/exceptions/404.vue")
         }
     ]
