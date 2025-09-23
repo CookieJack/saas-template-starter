@@ -41,6 +41,15 @@ const router = createRouter({
                         icon: LibraryOutlineIcon
                     },
                     component: () => import("~/workbench/index.vue")
+                },
+                {
+                    path: 'decoration',
+                    name: 'Decoration',
+                    meta: {
+                        title: '官网装修',
+                        icon: LibraryOutlineIcon
+                    },
+                    component: () => import("~/decoration/index.vue")
                 }
             ]
         },

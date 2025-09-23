@@ -1,10 +1,13 @@
 <template>
-    <n-button @click="handleLogout">{{ $t('common.logout') }}</n-button>
-    <n-input v-model:value="inputValue" clearable />
-    <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"
-        @update:value="handleUpdateLocale">
-        <n-button>{{ $t(`common.${settingsStore.locale}`) }}</n-button>
-    </n-popselect>
+    <div class="space-y-4">
+        <n-button @click="handleLogout">{{ $t('common.logout') }}</n-button>
+        <n-button @click="handleGoToDecoration" type="primary">跳转到装修页面</n-button>
+        <n-input v-model:value="inputValue" clearable />
+        <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"
+            @update:value="handleUpdateLocale">
+            <n-button>{{ $t(`common.${settingsStore.locale}`) }}</n-button>
+        </n-popselect>
+    </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue"
@@ -34,6 +37,10 @@ const handleUpdateLocale = (value: string) => {
     settingsStore.locale = value
     locale.value = settingsStore.locale
     window.location.reload()
+}
+
+const handleGoToDecoration = () => {
+    router.push({ path: '/dashboard/decoration' })
 }
 
 const handleLogout = () => {
