@@ -1,5 +1,6 @@
 <template>
-  <n-config-provider :locale="settingsStore.getNaiveUILocale" :date-locale="settingsStore.getNaiveUIDateLocale">
+  <n-config-provider :theme-overrides="themeOverrides" :locale="settingsStore.getNaiveUILocale"
+    :date-locale="settingsStore.getNaiveUIDateLocale">
     <n-message-provider>
       <n-dialog-provider>
         <router-view />
@@ -12,6 +13,13 @@
 import useSettingsStore from "$/modules/settings"
 
 const settingsStore = useSettingsStore()
+const themeOverrides = {
+  common: {
+    primaryColor: '#14b8a6',
+    primaryColorHover: '#0d9488',
+    primaryColorPressed: '#0f766e'
+  }
+}
 </script>
 
 <style scoped></style>

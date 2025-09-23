@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vicons/antd": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "^13.5.0",
     "js-cookie": "^3.0.5",

@@ -31,5 +31,8 @@
     "upload": "Upload",
     "download": "Download",
     "back-home": "Back to Home",
-    "not-found": "Page Not Found"
+    "not-found": "Page Not Found",
+    "username": "Username",
+    "password": "Password",
+    "welcome": "Welcome back, please login to your account"
 }
