@@ -16,23 +16,28 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {
-            path: "/",
+            path: '/',
             name: 'Root',
-            redirect: '/dashboard',
             meta: {
-                title: t('home.workbench'),
-                icon: HomeOutlineIcon,
-                hidden: false
+                hidden: true
+            },
+            redirect: '/dashboard/workbench'
+        },
+        {
+            path: '/dashboard',
+            name: 'Dashboard',
+            meta: {
+                title: t('home.dashboard'),
+                icon: HomeOutlineIcon
             },
             component: Layout,
             children: [
                 {
-                    path: "dashboard",
-                    name: 'Dashboard',
+                    path: 'workbench',
+                    name: 'Workbench',
                     meta: {
                         title: t('home.workbench'),
-                        icon: LibraryOutlineIcon,
-                        hidden: false
+                        icon: LibraryOutlineIcon
                     },
                     component: () => import("~/workbench/index.vue")
                 }

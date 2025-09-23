@@ -1,11 +1,11 @@
 <template>
-    <n-menu :options="options" @update:value="handleMenuItemClick" />
+    <n-menu ref="menuRef" v-model:value="activedRoute" :options="options" @update:value="handleMenuItemClick" />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, h } from "vue"
 import { RouterLink, useRouter } from "vue-router"
-import type { MenuOption } from "naive-ui"
+import type { MenuOption, MenuInst } from "naive-ui"
 import { MenuOutline as MenuOutlineIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
 
@@ -13,32 +13,34 @@ const { renderIcon } = useNaiveUIRender()
 const router = useRouter()
 
 const options = ref<MenuOption[]>([])
+const menuRef = ref<MenuInst | null>(null)
+
+const activedRoute = ref(router.currentRoute.value.path)
 
 const handleMenuItemClick = (key: string, item: MenuOption) => {
     if (item.children) return
-    console.log(key, item)
+    router.push({ path: key })
+    menuRef.value?.showOption(key)
+}
+
+// 递归构建菜单项的函数
+const buildMenuItem = (route: any, parentPath = ''): MenuOption => {
+    const fullPath = parentPath ? `${parentPath}/${route.path}` : route.path
+    const hasChildren = route.children && route.children.length > 0
+
+    return {
+        label: () => hasChildren ? route.meta?.title : h(RouterLink, { to: { path: fullPath } }, { default: () => route.meta?.title }),
+        key: fullPath,
+        icon: () => renderIcon(route.meta?.icon || MenuOutlineIcon),
+        children: hasChildren ? route.children.map((child: any) => buildMenuItem(child, fullPath)) : undefined
+    }
 }
 
 onMounted(() => {
     //@ts-ignore
-    options.value = router.options.routes.filter(route => !route.meta?.hidden).map(route => {
-        console.log(route)
-        return {
-            label: () => route.children ? route.meta?.title : h(RouterLink, { to: { path: route.path } }, { default: () => route.meta?.title }),
-            key: route.path,
-            icon: () => renderIcon(route.meta?.icon || MenuOutlineIcon),
-            children: route.children?.map(child => ({
-                label: () => child.children ? child.meta?.title : h(RouterLink, { to: { path: `${route.path}/${child.path}` } }, { default: () => child.meta?.title }),
-                key: `${route.path}/${child.path}`,
-                icon: () => renderIcon(child.meta?.icon || MenuOutlineIcon),
-                children: child.children?.map(grandchild => ({
-                    label: () => grandchild.children ? grandchild.meta?.title : h(RouterLink, { to: { path: `${route.path}/${child.path}/${grandchild.path}` } }, { default: () => grandchild.meta?.title }),
-                    key: `${route.path}/${child.path}/${grandchild.path}`,
-                    icon: () => renderIcon(grandchild.meta?.icon || MenuOutlineIcon)
-                }))
-            }))
-        }
-    })
+    options.value = router.options.routes
+        .filter(route => !route.meta?.hidden)
+        .map(route => buildMenuItem(route))
 })
 </script>
 
