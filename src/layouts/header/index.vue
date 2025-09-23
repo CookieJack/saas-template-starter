@@ -4,9 +4,6 @@
             <n-image preview-disabled :src="LogoImage" :width="30" :height="30" />
             <span class="text-lg">{{ appStore.name }}</span>
         </div>
-        <n-breadcrumb>
-            <n-breadcrumb-item :clickable="false">{{ t('home.workbench') }}</n-breadcrumb-item>
-        </n-breadcrumb>
         <div class="flex-grow"></div>
         <div class="container-right">
             <n-dropdown trigger="hover" :show-arrow="true" :options="avatarOptions" @select="handleAvatarOptionSelect">
