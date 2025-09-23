@@ -15,7 +15,6 @@ import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import useSettingsStore from "$/modules/settings"
 import useUserStore from "$/modules/user"
-import Cookies from "js-cookie"
 
 const router = useRouter()
 const { t, locale } = useI18n()

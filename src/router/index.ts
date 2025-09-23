@@ -8,7 +8,7 @@ import {
     LibraryOutline as LibraryOutlineIcon
 } from "@vicons/ionicons5"
 
-const { message, loadingBar } = createDiscreteApi(["message", "loadingBar"])
+const { loadingBar } = createDiscreteApi(["loadingBar"])
 
 const { t } = i18n.global
 

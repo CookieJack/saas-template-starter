@@ -15,7 +15,7 @@
                             @update:value="handleTabChange" @close="handleTabClose" @contextmenu="handleTabContextMenu">
                             <n-tab v-for="view in cachedViewsStore.getCachedViews" :key="view.path" :name="view.path"
                                 :closable="!view.isAffix">
-                                {{ view.title }}
+                                {{ $t(view.title) }}
                             </n-tab>
                         </n-tabs>
                     </n-scrollbar>
@@ -37,9 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted } from "vue"
+import { ref, watch, nextTick } from "vue"
 import { useRoute, useRouter } from "vue-router"
-import { useDialog } from "naive-ui"
 import Header from "./header/index.vue"
 import Footer from "./footer/index.vue"
 import Sidebar from "./sidebar/index.vue"
@@ -48,7 +47,6 @@ import { useI18n } from "vue-i18n"
 
 const route = useRoute()
 const router = useRouter()
-const dialog = useDialog()
 const { t } = useI18n()
 const cachedViewsStore = useCachedViewsStore()
 const sidebarRef = ref()
@@ -84,6 +82,7 @@ watch(
     () => route.path,
     (newPath) => {
         if (newPath && newPath !== '/login' && !newPath.includes('/:')) {
+            console.log(route)
             cachedViewsStore.addCachedView(route)
             cachedViewsStore.setActiveView(newPath)
 
