@@ -37,6 +37,7 @@ const router = createRouter({
                     name: 'Workbench',
                     meta: {
                         title: t('home.workbench'),
+                        isAffix: true,
                         icon: LibraryOutlineIcon
                     },
                     component: () => import("~/workbench/index.vue")

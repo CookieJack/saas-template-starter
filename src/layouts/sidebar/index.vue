@@ -1,5 +1,6 @@
 <template>
-    <n-menu ref="menuRef" v-model:value="activedRoute" :options="options" @update:value="handleMenuItemClick" />
+    <n-menu ref="menuRef" v-model:value="router.currentRoute.value.path" :options="options"
+        @update:value="handleMenuItemClick" />
 </template>
 
 <script setup lang="ts">
@@ -15,12 +16,9 @@ const router = useRouter()
 const options = ref<MenuOption[]>([])
 const menuRef = ref<MenuInst | null>(null)
 
-const activedRoute = ref(router.currentRoute.value.path)
-
 const handleMenuItemClick = (key: string, item: MenuOption) => {
     if (item.children) return
     router.push({ path: key })
-    menuRef.value?.showOption(key)
 }
 
 // 递归构建菜单项的函数
