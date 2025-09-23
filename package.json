@@ -12,6 +12,7 @@
     "@vicons/antd": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "^13.5.0",
+    "animate.css": "^4.1.1",
     "js-cookie": "^3.0.5",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.4.1",

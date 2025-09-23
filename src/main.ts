@@ -7,6 +7,7 @@ import { createPinia } from "pinia"
 import useAppStore from "./store/modules/app"
 import directives from "./directives"
 import App from './App.vue'
+import 'animate.css'
 
 const app = createApp(App)
 const store = createPinia()

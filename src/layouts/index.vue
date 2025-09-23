@@ -21,7 +21,13 @@
                     </n-scrollbar>
                 </n-card>
                 <div class="p-2">
-                    <router-view></router-view>
+                    <transition
+                        mode="out-in"
+                        enter-active-class="animate__animated animate__fadeInLeft animate__faster"
+                        leave-active-class="animate__animated animate__fadeOutRight animate__faster"
+                    >
+                        <router-view></router-view>
+                    </transition>
                 </div>
             </n-layout-content>
         </n-layout>
