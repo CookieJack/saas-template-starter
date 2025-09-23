@@ -14,11 +14,13 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import useSettingsStore from "$/modules/settings"
+import useUserStore from "$/modules/user"
 import Cookies from "js-cookie"
 
 const router = useRouter()
 const { t, locale } = useI18n()
 const settingsStore = useSettingsStore()
+const userStore = useUserStore()
 
 const inputValue = ref<string | null>(null)
 
@@ -43,9 +45,9 @@ const handleGoToDecoration = () => {
     router.push({ path: '/dashboard/decoration' })
 }
 
-const handleLogout = () => {
-    Cookies.remove("token")
-    router.push({ path: "/login", query: { redirect: '/dashboard' }, replace: true })
+const handleLogout = async () => {
+    await userStore.logOut()
+    router.push({ path: "/login", query: { redirect: '/dashboard/workbench' }, replace: true })
 }
 </script>
 <style scoped></style>

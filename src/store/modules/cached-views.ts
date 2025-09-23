@@ -74,8 +74,16 @@ const useCachedViewsStore = defineStore('cachedViews', {
         },
 
         removeOtherViews(path: string) {
+            // 只关闭除了当前标签和固定标签之外的其他标签
+            const currentAndAffixViews = this.cachedViews.filter(view => view.path === path || view.isAffix)
+
+            // 如果除了当前标签和固定标签外没有其他标签，就不做任何操作
+            if (currentAndAffixViews.length === this.cachedViews.length) {
+                return
+            }
+
             // 只保留当前标签和固定标签
-            this.cachedViews = this.cachedViews.filter(view => view.path === path || view.isAffix)
+            this.cachedViews = currentAndAffixViews
         },
 
         removeAllViews() {

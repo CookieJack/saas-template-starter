@@ -42,14 +42,25 @@ const router = createRouter({
                     },
                     component: () => import("~/workbench/index.vue")
                 },
+            ]
+        },
+        {
+            path: '/decoration',
+            name: 'Decoration',
+            meta: {
+                title: t('decoration.decoration'),
+                icon: LibraryOutlineIcon
+            },
+            component: Layout,
+            children: [
                 {
-                    path: 'decoration',
-                    name: 'Decoration',
+                    path: 'portal',
+                    name: 'DecorationPortal',
                     meta: {
-                        title: '官网装修',
+                        title: t('decoration.decoration-portal'),
                         icon: LibraryOutlineIcon
                     },
-                    component: () => import("~/decoration/index.vue")
+                    component: () => import("~/decoration/portal/index.vue")
                 }
             ]
         },
