@@ -1,5 +1,5 @@
 import type { Directive, DirectiveBinding } from 'vue'
-import useUserStore from '@/store/modules/user'
+import useUserStore from '$/modules/user'
 
 export const permission: Directive = {
     mounted(el: HTMLElement, binding: DirectiveBinding) {

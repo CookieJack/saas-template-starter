@@ -6,6 +6,18 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "~/*": [
+        "src/views/*"
+      ],
+      "$/*": [
+        "src/components/*"
+      ],
+      "$/*": [
+        "src/store/*"
+      ],
+      "&/*": [
+        "src/router/*"
       ]
     },
     /* Linting */

@@ -5,7 +5,7 @@
             <span class="text-lg">{{ appStore.name }}</span>
         </div>
         <n-breadcrumb>
-            <n-breadcrumb-item :clickable="false">首页</n-breadcrumb-item>
+            <n-breadcrumb-item :clickable="false">{{ t('home.workbench') }}</n-breadcrumb-item>
         </n-breadcrumb>
         <div class="flex-grow"></div>
         <div class="container-right">
@@ -22,8 +22,8 @@ import { useI18n } from "vue-i18n"
 import { useMessage, useDialog } from "naive-ui"
 import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
-import useAppStore from "@/store/modules/app"
-import useUserStore from "@/store/modules/user"
+import useAppStore from "$/modules/app"
+import useUserStore from "$/modules/user"
 import LogoImage from "@/assets/images/evo-v.jpeg"
 
 const { t } = useI18n()

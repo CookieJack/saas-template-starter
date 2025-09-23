@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import useSettingsStore from "@/store/modules/settings"
+import useSettingsStore from "$/modules/settings"
 
 const settingsStore = useSettingsStore()
 </script>

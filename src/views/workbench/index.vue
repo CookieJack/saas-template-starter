@@ -10,7 +10,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
-import useSettingsStore from "@/store/modules/settings"
+import useSettingsStore from "$/modules/settings"
 import Cookies from "js-cookie"
 
 const router = useRouter()
@@ -33,6 +33,7 @@ const localeOptions = [
 const handleUpdateLocale = (value: string) => {
     settingsStore.locale = value
     locale.value = settingsStore.locale
+    window.location.reload()
 }
 
 const handleLogout = () => {

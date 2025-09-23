@@ -5,8 +5,6 @@ import Cookies from "js-cookie"
 import i18n from "@/locale"
 import {
     HomeOutline as HomeOutlineIcon,
-    BuildOutline as BuildOutlineIcon,
-    DesktopOutline as DesktopOutlineIcon,
     LibraryOutline as LibraryOutlineIcon
 } from "@vicons/ionicons5"
 
@@ -22,7 +20,7 @@ const router = createRouter({
             name: 'Root',
             redirect: '/dashboard',
             meta: {
-                title: t('home.dashboard'),
+                title: t('home.workbench'),
                 icon: HomeOutlineIcon,
                 hidden: false
             },
@@ -36,7 +34,7 @@ const router = createRouter({
                         icon: LibraryOutlineIcon,
                         hidden: false
                     },
-                    component: () => import("@/views/dashboard/index.vue")
+                    component: () => import("~/workbench/index.vue")
                 }
             ]
         },
@@ -47,7 +45,7 @@ const router = createRouter({
                 title: t('common.login'),
                 hidden: true
             },
-            component: () => import("@/views/login/index.vue")
+            component: () => import("~/login/index.vue")
         },
         {
             path: '/:pathMatch(.*)*',
@@ -56,7 +54,7 @@ const router = createRouter({
                 title: t('common.not-found'),
                 hidden: true
             },
-            component: () => import("@/views/exceptions/404.vue")
+            component: () => import("~/exceptions/404.vue")
         }
     ]
 })
