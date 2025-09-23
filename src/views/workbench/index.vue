@@ -42,7 +42,7 @@ const handleUpdateLocale = (value: string) => {
 }
 
 const handleGoToDecoration = () => {
-    router.push({ path: '/dashboard/decoration' })
+    router.push({ path: '/decoration/portal' })
 }
 
 const handleLogout = async () => {

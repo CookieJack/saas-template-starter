@@ -22,7 +22,19 @@ const expandedKeys = ref<string[]>([])
 const currentPath = computed(() => route.path)
 
 const handleMenuItemClick = (key: string, item: MenuOption) => {
-    if (item.children) return
+    // 如果有子菜单，处理展开/收起逻辑
+    if (item.children) {
+        const isExpanded = expandedKeys.value.includes(key)
+        if (isExpanded) {
+            // 如果已展开，则收起
+            expandedKeys.value = expandedKeys.value.filter(k => k !== key)
+        } else {
+            // 如果未展开，则展开
+            expandedKeys.value = [...expandedKeys.value, key]
+        }
+        return
+    }
+    // 没有子菜单的项才进行路由跳转
     router.push({ path: key })
 }
 
