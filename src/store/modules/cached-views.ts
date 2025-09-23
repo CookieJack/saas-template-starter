@@ -25,7 +25,7 @@ const useCachedViewsStore = defineStore('cachedViews', {
             const { path, name, meta, query, params } = view
             const title = meta?.title || '未命名'
             const isAffix = meta?.isAffix || false
-            
+
             // 检查是否已经存在
             const existingView = this.cachedViews.find(v => v.path === path)
             if (!existingView) {
@@ -39,7 +39,7 @@ const useCachedViewsStore = defineStore('cachedViews', {
                 })
             }
         },
-        
+
         removeCachedView(path: string) {
             const index = this.cachedViews.findIndex(view => view.path === path)
             if (index > -1) {
@@ -50,7 +50,7 @@ const useCachedViewsStore = defineStore('cachedViews', {
                 }
             }
         },
-        
+
         removeLeftViews(path: string) {
             const currentIndex = this.cachedViews.findIndex(view => view.path === path)
             if (currentIndex > -1) {
@@ -61,7 +61,7 @@ const useCachedViewsStore = defineStore('cachedViews', {
                 this.cachedViews = viewsToKeep
             }
         },
-        
+
         removeRightViews(path: string) {
             const currentIndex = this.cachedViews.findIndex(view => view.path === path)
             if (currentIndex > -1) {
@@ -72,24 +72,21 @@ const useCachedViewsStore = defineStore('cachedViews', {
                 this.cachedViews = viewsToKeep
             }
         },
-        
+
         removeOtherViews(path: string) {
-            // 保留当前标签和所有固定标签
-            const viewsToKeep = this.cachedViews.filter(view => {
-                return view.path === path || view.isAffix
-            })
-            this.cachedViews = viewsToKeep
+            // 只保留当前标签和固定标签
+            this.cachedViews = this.cachedViews.filter(view => view.path === path || view.isAffix)
         },
-        
+
         removeAllViews() {
             // 只保留固定标签
             this.cachedViews = this.cachedViews.filter(view => view.isAffix)
         },
-        
+
         setActiveView(path: string) {
             this.activeViewPath = path
         },
-        
+
         clearAllViews() {
             this.cachedViews = []
             this.activeViewPath = ''
