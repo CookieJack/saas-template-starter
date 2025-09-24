@@ -5,6 +5,10 @@
             <span class="text-lg">{{ appStore.name }}</span>
         </div>
         <div class="flex-grow"></div>
+        <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"
+            @update:value="handleUpdateLocale">
+            <n-button>{{ $t(`common.${settingsStore.locale}`) }}</n-button>
+        </n-popselect>
         <div class="container-right">
             <n-dropdown trigger="hover" :show-arrow="true" :options="avatarOptions" @select="handleAvatarOptionSelect">
                 <n-avatar :src="LogoImage" :size="30" round />
@@ -21,12 +25,14 @@ import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOut
 import { useNaiveUIRender } from "@/hooks/useRender"
 import useAppStore from "$/modules/app"
 import useUserStore from "$/modules/user"
+import useSettingsStore from "$/modules/settings"
 import LogoImage from "@/assets/images/evo-v.jpeg"
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
+const settingsStore = useSettingsStore()
 const message = useMessage()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
@@ -43,6 +49,23 @@ const avatarOptions = [
         icon: () => renderIcon(LogOutOutlineIcon)
     }
 ]
+
+const localeOptions = [
+    {
+        label: t('common.zh'),
+        value: 'zh'
+    },
+    {
+        label: t('common.en'),
+        value: 'en'
+    }
+]
+
+const handleUpdateLocale = (value: string) => {
+    settingsStore.locale = value
+    locale.value = settingsStore.locale
+    window.location.reload()
+}
 
 const handleAvatarOptionSelect = (key: string | number) => {
     switch (key) {
