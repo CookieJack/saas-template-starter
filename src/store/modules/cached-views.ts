@@ -5,6 +5,7 @@ export interface CachedView {
     path: string
     name: string
     title: string
+    titleKey?: string  // 国际化键
     isAffix?: boolean
     query?: any
     params?: any
@@ -23,7 +24,7 @@ const useCachedViewsStore = defineStore('cachedViews', {
     actions: {
         addCachedView(view: RouteLocationNormalized) {
             const { path, name, meta, query, params } = view
-            const title = meta?.title || '未命名'
+            const titleKey = meta?.title || '未命名'
             const isAffix = meta?.isAffix || false
 
             // 检查是否已经存在
@@ -32,11 +33,20 @@ const useCachedViewsStore = defineStore('cachedViews', {
                 this.cachedViews.push({
                     path,
                     name: name as string,
-                    title,
+                    title: titleKey,  // 存储国际化键
+                    titleKey: titleKey,  // 同时存储国际化键用于动态翻译
                     isAffix,
                     query,
                     params
                 })
+            }
+        },
+
+        updateCachedViewTitle(path: string, titleKey: string) {
+            const view = this.cachedViews.find(v => v.path === path)
+            if (view) {
+                view.title = titleKey
+                view.titleKey = titleKey
             }
         },
 

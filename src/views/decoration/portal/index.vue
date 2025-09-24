@@ -1,6 +1,6 @@
 <template>
     <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">官网装修</h1>
+        <h1 class="text-2xl font-bold mb-4">{{ $t('decoration.decoration-portal') }}</h1>
         <n-card>
             <p>这是官网装修页面，用于测试标签页缓存功能。</p>
             <p>你可以：</p>

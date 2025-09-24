@@ -16,7 +16,7 @@
                             <n-tab v-for="view in cachedViewsStore.getCachedViews" :key="view.path" :name="view.path"
                                 :closable="!view.isAffix"
                                 @contextmenu="(e: MouseEvent) => handleTabContextMenu(e, view.path)">
-                                {{ $t(view.title) }}
+                                {{ $t(view.titleKey || view.title) }}
                             </n-tab>
                         </n-tabs>
                     </n-scrollbar>
@@ -47,12 +47,14 @@ import Header from "./header/index.vue"
 import Footer from "./footer/index.vue"
 import Sidebar from "./sidebar/index.vue"
 import useCachedViewsStore from "$/modules/cached-views"
+import useSettingsStore from "$/modules/settings"
 import { useI18n } from "vue-i18n"
 
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 const cachedViewsStore = useCachedViewsStore()
+const settingsStore = useSettingsStore()
 const sidebarRef = ref()
 
 // 右键菜单状态
@@ -64,19 +66,19 @@ const currentContextMenuTab = ref('')
 // 右键菜单选项
 const contextMenuOptions = [
     {
-        label: t('common.close-left'),
+        label: () => t('common.close-left'),
         key: 'close-left'
     },
     {
-        label: t('common.close-right'),
+        label: () => t('common.close-right'),
         key: 'close-right'
     },
     {
-        label: t('common.close-other'),
+        label: () => t('common.close-other'),
         key: 'close-other'
     },
     {
-        label: t('common.close-all'),
+        label: () => t('common.close-all'),
         key: 'close-all'
     }
 ]
@@ -94,6 +96,20 @@ watch(
         }
     },
     { immediate: true }
+)
+
+// 监听语言变化，更新缓存标签标题
+watch(
+    () => settingsStore.locale,
+    () => {
+        // 语言切换时，重新获取所有路由并更新缓存标签的标题
+        const routes = router.getRoutes()
+        routes.forEach(route => {
+            if (route.meta?.title) {
+                cachedViewsStore.updateCachedViewTitle(route.path, route.meta.title as string)
+            }
+        })
+    }
 )
 
 // 标签页切换
