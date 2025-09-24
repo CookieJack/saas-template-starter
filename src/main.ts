@@ -3,16 +3,12 @@ import './style.css'
 import router from "./router"
 import pinia from "./store"
 import i18n from "./locale"
-import { createPinia } from "pinia"
-import useAppStore from "./store/modules/app"
 import directives from "./directives"
+import { createHead } from "@unhead/vue/client"
 import App from './App.vue'
 import 'animate.css'
 
 const app = createApp(App)
-const store = createPinia()
-const appStore = useAppStore(store)
+const head = createHead()
 
-document.title = appStore.name
-
-app.use(router).use(pinia).use(i18n).use(directives).mount('#app')
+app.use(router).use(pinia).use(i18n).use(directives).use(head).mount('#app')

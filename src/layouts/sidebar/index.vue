@@ -1,6 +1,5 @@
 <template>
-    <n-menu ref="menuRef" v-model:value="currentPath" :options="options" @update:value="handleMenuItemClick"
-        accordion />
+    <n-menu ref="menuRef" v-model:value="currentPath" :options="options" @update:value="handleMenuItemClick" />
 </template>
 
 <script setup lang="ts">

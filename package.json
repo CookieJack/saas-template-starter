@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@unhead/vue": "^2.0.17",
     "@vicons/antd": "^0.13.0",
     "@vicons/fluent": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",

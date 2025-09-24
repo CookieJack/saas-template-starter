@@ -1,5 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import { createDiscreteApi } from "naive-ui"
+import i18n from "@/locale"
+import { createPinia } from "pinia"
+import useAppStore from "$/modules/app"
+import { useHead } from "@unhead/vue"
 import Layout from "@/layouts/index.vue"
 import Cookies from "js-cookie"
 import {
@@ -8,6 +12,12 @@ import {
 } from "@vicons/ionicons5"
 
 const { loadingBar } = createDiscreteApi(["loadingBar"])
+
+const pinia = createPinia()
+
+const { t } = i18n.global
+
+const appStore = useAppStore(pinia)
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -93,6 +103,9 @@ router.beforeEach((to) => {
         if (!token) {
             return { path: '/login', query: { redirect: to.fullPath } }
         } else {
+            useHead({
+                title: `${appStore.name} | ${t(to.meta.title as string || 'common.not-found')}`,
+            })
             return true
         }
     }
