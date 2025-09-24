@@ -98,9 +98,15 @@ router.beforeEach((to) => {
     // 白名单
     const whiteList = ['/login', '/404', '/500']
     if (whiteList.includes(to.path)) {
+        useHead({
+            title: `${appStore.name} | ${t('common.login')}`,
+        })
         return true
     } else {
         if (!token) {
+            useHead({
+                title: `${appStore.name} | ${t('common.login')}`,
+            })
             return { path: '/login', query: { redirect: to.fullPath } }
         } else {
             useHead({
