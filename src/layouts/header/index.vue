@@ -39,12 +39,12 @@ const { renderIcon } = useNaiveUIRender()
 
 const avatarOptions = [
     {
-        label: t('common.profile'),
+        label: () => t('common.profile'),
         key: 'profile',
         icon: () => renderIcon(PersonCircleOutlineIcon)
     },
     {
-        label: t('common.logout'),
+        label: () => t('common.logout'),
         key: 'logout',
         icon: () => renderIcon(LogOutOutlineIcon)
     }
