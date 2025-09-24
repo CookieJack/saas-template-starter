@@ -45,7 +45,7 @@ const cachedViewsStore = useCachedViewsStore()
 const message = useMessage()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
-const { isFullscreen, toggleFullscreen } = useFullscreen()
+const { toggleFullscreen } = useFullscreen()
 
 const avatarOptions = [
     {

@@ -1,5 +1,95 @@
-# Vue 3 + TypeScript + Vite
+# SaaS 管理后台模板
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个基于 Vue 3 + TypeScript + Vite 的现代化 SaaS 管理后台模板，提供了完整的企业级应用开发基础架构。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 🚀 技术栈
+
+- **前端框架**: Vue 3 (Composition API)
+- **编程语言**: TypeScript
+- **构建工具**: Vite
+- **UI 框架**: Naive UI
+- **状态管理**: Pinia (支持持久化存储)
+- **路由管理**: Vue Router
+- **国际化**: Vue I18n
+- **样式方案**: Tailwind CSS + PostCSS
+- **图标库**: @vicons (Ant Design, Fluent, Ionicons5)
+- **动画库**: Animate.css
+
+## 📦 核心功能
+
+### 🔐 认证系统
+- 登录页面 (支持用户名/密码登录)
+- Token 认证机制
+- 路由权限控制
+- 登录状态持久化
+
+### 🏗️ 布局系统
+- 响应式布局设计
+- 顶部导航栏
+- 侧边栏菜单
+- 底部页脚
+- 标签页导航 (支持右键菜单操作)
+- 多标签页缓存管理
+
+### 🎨 UI 特性
+- 现代化卡片式设计
+- 主题颜色自定义 (支持 Teal 主题)
+- 动画过渡效果
+- 响应式设计
+- 国际化支持
+
+### 📱 页面模块
+- **工作台**: 系统主面板
+- **装饰模块**: 门户装饰页面
+- **异常处理**: 404 页面
+- **登录页面**: 用户认证入口
+
+## 🎯 项目特色
+
+1. **企业级架构**: 采用模块化设计，易于扩展和维护
+2. **TypeScript 支持**: 完整的类型定义，提升开发体验
+3. **现代化 UI**: 基于 Naive UI 组件库，界面美观且功能丰富
+4. **国际化就绪**: 内置多语言支持框架
+5. **权限控制**: 完善的路由守卫和权限验证机制
+6. **开发体验**: 热更新、自动导入、代码提示等现代化开发工具
+
+## 🛠️ 开发环境
+
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 预览构建结果
+npm run preview
+```
+
+## 📁 项目结构
+
+```
+src/
+├── assets/          # 静态资源
+├── components/      # 公共组件
+├── directives/      # 自定义指令
+├── hooks/          # 组合式函数
+├── layouts/        # 布局组件
+├── locale/         # 国际化配置
+├── router/         # 路由配置
+├── store/          # 状态管理
+├── utils/          # 工具函数
+└── views/          # 页面组件
+```
+
+## 🔧 配置说明
+
+- **主题配置**: 支持通过 Naive UI 主题覆盖自定义颜色和样式
+- **路由配置**: 支持嵌套路由、权限路由、隐藏路由等配置
+- **国际化**: 支持多语言切换，内置中英文语言包
+- **构建优化**: Vite 构建配置，支持代码分割和懒加载
+
+这个模板为快速开发企业级管理后台应用提供了完整的基础，您可以直接基于此模板进行业务功能开发。
