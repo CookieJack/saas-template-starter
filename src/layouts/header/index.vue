@@ -26,6 +26,7 @@ import { useNaiveUIRender } from "@/hooks/useRender"
 import useAppStore from "$/modules/app"
 import useUserStore from "$/modules/user"
 import useSettingsStore from "$/modules/settings"
+import useCachedViewsStore from "$/modules/cached-views"
 import LogoImage from "@/assets/images/evo-v.jpeg"
 
 const { t, locale } = useI18n()
@@ -33,6 +34,7 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
+const cachedViewsStore = useCachedViewsStore()
 const message = useMessage()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
@@ -79,6 +81,7 @@ const handleAvatarOptionSelect = (key: string | number) => {
                 negativeText: t('common.cancel'),
                 onPositiveClick: async () => {
                     await userStore.logOut()
+                    cachedViewsStore.clearAllViews()
                     router.replace({ path: '/login', query: { redirect: '/dashboard/workbench' } })
                     d.destroy()
                 }
