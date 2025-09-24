@@ -34,5 +34,7 @@
     "not-found": "Page Not Found",
     "username": "Username",
     "password": "Password",
-    "welcome": "Welcome back, please login to your account"
+    "welcome": "Welcome back, please login to your account",
+    "fullscreen": "Fullscreen",
+    "exit-fullscreen": "Exit Fullscreen"
 }

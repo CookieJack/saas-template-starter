@@ -7,8 +7,13 @@
         <div class="flex-grow"></div>
         <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"
             @update:value="handleUpdateLocale">
-            <n-button>{{ $t(`common.${settingsStore.locale}`) }}</n-button>
+            <n-button size="small">{{ $t(`common.${settingsStore.locale}`) }}</n-button>
         </n-popselect>
+        <n-button text @click="toggleFullscreen">
+            <template #icon>
+                <n-icon :component="FullscreenIcon" />
+            </template>
+        </n-button>
         <div class="container-right">
             <n-dropdown trigger="hover" :show-arrow="true" :options="avatarOptions" @select="handleAvatarOptionSelect">
                 <n-avatar :src="LogoImage" :size="30" round />
@@ -22,7 +27,9 @@ import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { useMessage, useDialog } from "naive-ui"
 import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
+import { ExpandOutline as FullscreenIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
+import { useFullscreen } from "@/hooks/useFullscreen"
 import useAppStore from "$/modules/app"
 import useUserStore from "$/modules/user"
 import useSettingsStore from "$/modules/settings"
@@ -38,6 +45,7 @@ const cachedViewsStore = useCachedViewsStore()
 const message = useMessage()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
+const { isFullscreen, toggleFullscreen } = useFullscreen()
 
 const avatarOptions = [
     {

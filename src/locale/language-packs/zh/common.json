@@ -34,5 +34,7 @@
     "not-found": "没有找到这个页面",
     "username": "用户名",
     "password": "密码",
-    "welcome": "欢迎回来，请登录您的账户"
+    "welcome": "欢迎回来，请登录您的账户",
+    "fullscreen": "全屏",
+    "exit-fullscreen": "退出全屏"
 }
