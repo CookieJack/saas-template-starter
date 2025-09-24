@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect } from "vue"
 import { useRouter, useRoute } from "vue-router"
+import { useI18n } from "vue-i18n"
 import type { MenuOption, MenuInst } from "naive-ui"
 import { MenuOutline as MenuOutlineIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
@@ -12,6 +13,7 @@ import { useNaiveUIRender } from "@/hooks/useRender"
 const { renderIcon } = useNaiveUIRender()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const options = ref<MenuOption[]>([])
 const menuRef = ref<MenuInst | null>(null)
@@ -29,7 +31,7 @@ const buildMenuItem = (route: any, parentPath = ''): MenuOption => {
     const hasChildren = route.children && route.children.length > 0
 
     return {
-        label: () => route.meta?.title || '',
+        label: () => t(route.meta?.title) || '',
         key: fullPath,
         icon: () => renderIcon(route.meta?.icon || MenuOutlineIcon),
         children: hasChildren ? route.children.map((child: any) => buildMenuItem(child, fullPath)) : undefined

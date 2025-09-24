@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick } from "vue"
+import { ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import Header from "./header/index.vue"
 import Footer from "./footer/index.vue"

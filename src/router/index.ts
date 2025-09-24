@@ -2,15 +2,12 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import { createDiscreteApi } from "naive-ui"
 import Layout from "@/layouts/index.vue"
 import Cookies from "js-cookie"
-import i18n from "@/locale"
 import {
     HomeOutline as HomeOutlineIcon,
     LibraryOutline as LibraryOutlineIcon
 } from "@vicons/ionicons5"
 
 const { loadingBar } = createDiscreteApi(["loadingBar"])
-
-const { t } = i18n.global
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -27,7 +24,7 @@ const router = createRouter({
             path: '/dashboard',
             name: 'Dashboard',
             meta: {
-                title: t('home.dashboard'),
+                title: 'home.dashboard',
                 icon: HomeOutlineIcon
             },
             component: Layout,
@@ -36,7 +33,7 @@ const router = createRouter({
                     path: 'workbench',
                     name: 'Workbench',
                     meta: {
-                        title: t('home.workbench'),
+                        title: 'home.workbench',
                         isAffix: true,
                         icon: LibraryOutlineIcon
                     },
@@ -48,7 +45,7 @@ const router = createRouter({
             path: '/decoration',
             name: 'Decoration',
             meta: {
-                title: t('decoration.decoration'),
+                title: 'decoration.decoration',
                 icon: LibraryOutlineIcon
             },
             component: Layout,
@@ -57,7 +54,7 @@ const router = createRouter({
                     path: 'portal',
                     name: 'DecorationPortal',
                     meta: {
-                        title: t('decoration.decoration-portal'),
+                        title: 'decoration.decoration-portal',
                         icon: LibraryOutlineIcon
                     },
                     component: () => import("~/decoration/portal/index.vue")
@@ -68,7 +65,7 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             meta: {
-                title: t('common.login'),
+                title: 'common.login',
                 hidden: true
             },
             component: () => import("~/login/index.vue")
@@ -77,7 +74,7 @@ const router = createRouter({
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
             meta: {
-                title: t('common.not-found'),
+                title: 'common.not-found',
                 hidden: true
             },
             component: () => import("~/exceptions/404.vue")

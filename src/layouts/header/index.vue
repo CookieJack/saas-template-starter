@@ -64,7 +64,6 @@ const localeOptions = [
 const handleUpdateLocale = (value: string) => {
     settingsStore.locale = value
     locale.value = settingsStore.locale
-    window.location.reload()
 }
 
 const handleAvatarOptionSelect = (key: string | number) => {
