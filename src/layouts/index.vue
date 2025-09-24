@@ -22,8 +22,9 @@
                     </n-scrollbar>
                 </n-card>
                 <div class="p-2">
-                    <transition mode="out-in" enter-active-class="animate__animated animate__fadeInLeft animate__faster"
-                        leave-active-class="animate__animated animate__fadeOutRight animate__faster">
+                    <transition mode="out-in"
+                        enter-active-class="animate__animated animate__slideInLeft animate__faster"
+                        leave-active-class="animate__animated animate__slideOutLeft animate__faster">
                         <router-view></router-view>
                     </transition>
                 </div>
@@ -100,11 +101,8 @@ watch(
     () => route.path,
     (newPath) => {
         if (newPath && newPath !== '/login' && !newPath.includes('/:')) {
-            console.log(route)
             cachedViewsStore.addCachedView(route)
             cachedViewsStore.setActiveView(newPath)
-
-
         }
     },
     { immediate: true }
