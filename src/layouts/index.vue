@@ -43,20 +43,28 @@
 <script setup lang="ts">
 import { ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { useI18n } from "vue-i18n"
+import {
+    ArrowExportRtl20Regular as CloseLeftIcon,
+    ArrowExportLtr20Regular as CloseRightIcon,
+    ArrowFit20Regular as CloseOtherIcon,
+    DeleteDismiss24Regular as CloseAllIcon
+} from "@vicons/fluent"
 import Header from "./header/index.vue"
 import Footer from "./footer/index.vue"
 import Sidebar from "./sidebar/index.vue"
 import useCachedViewsStore from "$/modules/cached-views"
 import useSettingsStore from "$/modules/settings"
-import { useI18n } from "vue-i18n"
+import { useNaiveUIRender } from "@/hooks/useRender"
 
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
+const { renderIcon } = useNaiveUIRender()
 const cachedViewsStore = useCachedViewsStore()
 const settingsStore = useSettingsStore()
-const sidebarRef = ref()
 
+const sidebarRef = ref()
 // 右键菜单状态
 const showContextMenu = ref(false)
 const contextMenuX = ref(0)
@@ -67,18 +75,22 @@ const currentContextMenuTab = ref('')
 const contextMenuOptions = [
     {
         label: () => t('common.close-left'),
+        icon: () => renderIcon(CloseLeftIcon),
         key: 'close-left'
     },
     {
         label: () => t('common.close-right'),
+        icon: () => renderIcon(CloseRightIcon),
         key: 'close-right'
     },
     {
         label: () => t('common.close-other'),
+        icon: () => renderIcon(CloseOtherIcon),
         key: 'close-other'
     },
     {
         label: () => t('common.close-all'),
+        icon: () => renderIcon(CloseAllIcon),
         key: 'close-all'
     }
 ]

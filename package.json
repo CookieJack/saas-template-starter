@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vicons/antd": "^0.13.0",
+    "@vicons/fluent": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "^13.5.0",
     "animate.css": "^4.1.1",
