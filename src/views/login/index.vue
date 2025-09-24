@@ -64,7 +64,7 @@ const handleLogin = () => {
             // 模拟登录请求
             setTimeout(() => {
                 Cookies.set("token", "123456", { expires: 7 })
-                router.push({ path: route.query.redirect as string || "/", replace: true })
+                router.replace({ path: route.query.redirect as string || "/" })
                 loading.value = false
             }, 1000)
         }
@@ -83,17 +83,6 @@ const handleLogin = () => {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-}
-
-.login-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
 }
 
 .login-card {
