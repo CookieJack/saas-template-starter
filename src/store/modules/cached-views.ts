@@ -24,8 +24,8 @@ const useCachedViewsStore = defineStore('cachedViews', {
     actions: {
         addCachedView(view: RouteLocationNormalized) {
             const { path, name, meta, query, params } = view
-            const titleKey = meta?.title || '未命名'
-            const isAffix = meta?.isAffix || false
+            const titleKey = (meta?.title as string) || '未命名'
+            const isAffix = (meta?.isAffix as boolean) || false
 
             // 检查是否已经存在
             const existingView = this.cachedViews.find(v => v.path === path)

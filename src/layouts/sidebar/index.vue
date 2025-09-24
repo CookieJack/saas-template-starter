@@ -21,7 +21,7 @@ const menuRef = ref<MenuInst | null>(null)
 // 响应式的当前路径
 const currentPath = computed(() => route.path)
 
-const handleMenuItemClick = (key: string, item: MenuOption) => {
+const handleMenuItemClick = (key: string) => {
     router.push({ path: key })
 }
 

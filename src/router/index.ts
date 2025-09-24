@@ -82,7 +82,7 @@ const router = createRouter({
     ]
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
     loadingBar.start()
     const token = Cookies.get("token")
     // 白名单
