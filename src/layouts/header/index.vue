@@ -57,7 +57,7 @@ const handleAvatarOptionSelect = (key: string | number) => {
                 negativeText: t('common.cancel'),
                 onPositiveClick: async () => {
                     await userStore.logOut()
-                    router.replace({ path: '/login', query: { redirect: '/dashboard' } })
+                    router.replace({ path: '/login', query: { redirect: '/dashboard/workbench' } })
                     d.destroy()
                 }
             })
