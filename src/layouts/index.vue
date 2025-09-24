@@ -12,20 +12,18 @@
                 <n-card hoverable :bordered="true" size="small" content-style="padding: 0px">
                     <n-scrollbar x-scrollable>
                         <n-tabs v-model:value="cachedViewsStore.activeViewPath" type="card" size="small"
-                            @update:value="handleTabChange" @close="handleTabClose" @contextmenu="handleTabContextMenu">
+                            @update:value="handleTabChange" @close="handleTabClose">
                             <n-tab v-for="view in cachedViewsStore.getCachedViews" :key="view.path" :name="view.path"
-                                :closable="!view.isAffix">
+                                :closable="!view.isAffix"
+                                @contextmenu="(e: MouseEvent) => handleTabContextMenu(e, view.path)">
                                 {{ $t(view.title) }}
                             </n-tab>
                         </n-tabs>
                     </n-scrollbar>
                 </n-card>
                 <div class="p-2">
-                    <transition
-                        mode="out-in"
-                        enter-active-class="animate__animated animate__fadeInLeft animate__faster"
-                        leave-active-class="animate__animated animate__fadeOutRight animate__faster"
-                    >
+                    <transition mode="out-in" enter-active-class="animate__animated animate__fadeInLeft animate__faster"
+                        leave-active-class="animate__animated animate__fadeOutRight animate__faster">
                         <router-view></router-view>
                     </transition>
                 </div>
@@ -92,12 +90,7 @@ watch(
             cachedViewsStore.addCachedView(route)
             cachedViewsStore.setActiveView(newPath)
 
-            // 同步侧边栏菜单
-            nextTick(() => {
-                if (sidebarRef.value) {
-                    sidebarRef.value.syncMenuWithRoute(route)
-                }
-            })
+
         }
     },
     { immediate: true }
@@ -140,6 +133,7 @@ const handleTabContextMenu = (e: MouseEvent, tabName: string) => {
 // 右键菜单选择
 const handleContextMenuSelect = (key: string) => {
     const currentPath = currentContextMenuTab.value
+    const wasActivePathClosed = currentPath === cachedViewsStore.activeViewPath
 
     switch (key) {
         case 'close-left':
@@ -153,12 +147,18 @@ const handleContextMenuSelect = (key: string) => {
             break
         case 'close-all':
             cachedViewsStore.removeAllViews()
-            // 切换到第一个固定标签
-            const affixViews = cachedViewsStore.getAffixViews
-            if (affixViews.length > 0) {
-                handleTabChange(affixViews[0].path)
-            }
             break
+    }
+
+    // 如果当前激活的标签页被关闭了，需要切换到其他可用的标签页
+    if (wasActivePathClosed) {
+        const remainingViews = cachedViewsStore.getCachedViews
+        if (remainingViews.length > 0) {
+            // 优先切换到第一个固定标签，如果没有则切换到第一个剩余标签
+            const affixViews = cachedViewsStore.getAffixViews
+            const nextView = affixViews.length > 0 ? affixViews[0] : remainingViews[0]
+            handleTabChange(nextView.path)
+        }
     }
 
     showContextMenu.value = false
