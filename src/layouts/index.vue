@@ -133,32 +133,38 @@ const handleTabContextMenu = (e: MouseEvent, tabName: string) => {
 // 右键菜单选择
 const handleContextMenuSelect = (key: string) => {
     const currentPath = currentContextMenuTab.value
-    const wasActivePathClosed = currentPath === cachedViewsStore.activeViewPath
+    const currentIsActive = currentPath === cachedViewsStore.activeViewPath
 
     switch (key) {
         case 'close-left':
             cachedViewsStore.removeLeftViews(currentPath)
+            // 如果当前路由不在当前标签，需要跳转到当前标签所在的路由
+            if (!currentIsActive) {
+                handleTabChange(currentPath)
+            }
             break
         case 'close-right':
             cachedViewsStore.removeRightViews(currentPath)
+            // 如果当前路由不在当前标签，需要跳转到当前标签所在的路由
+            if (!currentIsActive) {
+                handleTabChange(currentPath)
+            }
             break
         case 'close-other':
             cachedViewsStore.removeOtherViews(currentPath)
+            // 如果当前路由不在当前标签，需要跳转到当前标签所在的路由
+            if (!currentIsActive) {
+                handleTabChange(currentPath)
+            }
             break
         case 'close-all':
             cachedViewsStore.removeAllViews()
-            break
-    }
-
-    // 如果当前激活的标签页被关闭了，需要切换到其他可用的标签页
-    if (wasActivePathClosed) {
-        const remainingViews = cachedViewsStore.getCachedViews
-        if (remainingViews.length > 0) {
-            // 优先切换到第一个固定标签，如果没有则切换到第一个剩余标签
+            // 关闭所有后，需要跳转到固定标签的最近一个
             const affixViews = cachedViewsStore.getAffixViews
-            const nextView = affixViews.length > 0 ? affixViews[0] : remainingViews[0]
-            handleTabChange(nextView.path)
-        }
+            if (affixViews.length > 0) {
+                handleTabChange(affixViews[affixViews.length - 1].path)
+            }
+            break
     }
 
     showContextMenu.value = false
