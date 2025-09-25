@@ -100,7 +100,7 @@ const contextMenuOptions = [
 watch(
     () => route.path,
     (newPath) => {
-        if (newPath && newPath !== '/login' && !newPath.includes('/:')) {
+        if (newPath && newPath !== '/login' && !route.meta?.hidden) {
             cachedViewsStore.addCachedView(route)
             cachedViewsStore.setActiveView(newPath)
         }
