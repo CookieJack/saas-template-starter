@@ -24,10 +24,10 @@
                 </n-card>
                 <div class="p-2">
                     <router-view v-slot="{ Component, route }">
-                        <transition appear mode="out-in" :duration="{ enter: 400, leave: 400 }"
+                        <transition appear mode="out-in" :duration="{ enter: 300, leave: 300 }"
                             enter-active-class="animate__animated animate__slideInLeft"
                             leave-active-class="animate__animated animate__slideOutLeft">
-                            <keep-alive :max="10">
+                            <keep-alive>
                                 <component :is="Component" :key="route.path" />
                             </keep-alive>
                         </transition>
