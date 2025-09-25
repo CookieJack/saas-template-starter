@@ -68,6 +68,16 @@ const router = createRouter({
                         icon: LibraryOutlineIcon
                     },
                     component: () => import("~/decoration/portal/index.vue")
+                },
+                {
+                    path: 'portal/details/:id',
+                    name: 'DecorationPortalDetails',
+                    meta: {
+                        title: 'decoration.decoration-portal-details',
+                        icon: LibraryOutlineIcon,
+                        hidden: true
+                    },
+                    component: () => import("~/decoration/portal/details.vue")
                 }
             ]
         },

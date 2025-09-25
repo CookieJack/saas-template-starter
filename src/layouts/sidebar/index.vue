@@ -30,13 +30,15 @@ const handleMenuItemClick = (key: string) => {
 // 递归构建菜单项的函数
 const buildMenuItem = (route: any, parentPath = ''): MenuOption => {
     const fullPath = parentPath ? `${parentPath}/${route.path}` : route.path
-    const hasChildren = route.children && route.children.length > 0
+    // 过滤掉hidden为true的子路由
+    const visibleChildren = route.children?.filter((child: any) => !child.meta?.hidden) || []
+    const hasChildren = visibleChildren.length > 0
 
     return {
         label: () => t(route.meta?.title) || '',
         key: fullPath,
         icon: () => renderIcon(route.meta?.icon || MenuOutlineIcon),
-        children: hasChildren ? route.children.map((child: any) => buildMenuItem(child, fullPath)) : undefined
+        children: hasChildren ? visibleChildren.map((child: any) => buildMenuItem(child, fullPath)) : undefined
     }
 }
 
