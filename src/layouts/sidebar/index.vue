@@ -1,5 +1,5 @@
 <template>
-    <n-menu ref="menuRef" v-model:value="currentPath" :options="options" @update:value="handleMenuItemClick" />
+    <n-menu ref="menuRef" v-model:value="$route.path" :options="options" @update:value="handleMenuItemClick" />
 </template>
 
 <script setup lang="ts">

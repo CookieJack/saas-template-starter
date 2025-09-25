@@ -3,10 +3,7 @@
     :date-locale="settingsStore.getNaiveUIDateLocale">
     <n-message-provider>
       <n-dialog-provider>
-        <transition enter-active-class="animate__animated animate__fadeIn"
-          leave-active-class="animate__animated animate__fadeOut" mode="out-in" :duration="300">
-          <router-view />
-        </transition>
+        <router-view></router-view>
       </n-dialog-provider>
     </n-message-provider>
   </n-config-provider>
