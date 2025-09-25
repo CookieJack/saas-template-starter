@@ -23,7 +23,7 @@
                     </n-scrollbar>
                 </n-card>
                 <n-layout>
-                    <n-layout-content content-style="background-color: #f3f4f6; padding: 10px;">
+                    <n-layout-content content-style="background-color: #f3f4f6; padding: 5px;">
                         <router-view v-slot="{ Component, route }">
                             <transition appear mode="out-in" :duration="{ enter: 300, leave: 300 }"
                                 enter-active-class="animate__animated animate__slideInLeft"
