@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
-import { useMessage, useDialog } from "naive-ui"
+import { useDialog } from "naive-ui"
 import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
 import { ExpandOutline as FullscreenIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
@@ -42,7 +42,6 @@ const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
 const cachedViewsStore = useCachedViewsStore()
-const message = useMessage()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
 const { toggleFullscreen } = useFullscreen()
@@ -79,7 +78,7 @@ const handleUpdateLocale = (value: string) => {
 const handleAvatarOptionSelect = (key: string | number) => {
     switch (key) {
         case 'profile':
-            message.info('个人中心')
+            router.push({ name: 'Profile' })
             break
         case 'logout':
             const d = dialog.warning({

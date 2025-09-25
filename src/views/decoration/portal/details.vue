@@ -1,5 +1,6 @@
 <template>
-  <n-button @click="handleBack">关闭</n-button>
+  <span>{{ $route.params.id }}</span>
+  <n-button @click="handleBack">{{ $t('common.close') }}</n-button>
 </template>
 
 <script setup lang="ts">

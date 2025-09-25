@@ -91,6 +91,15 @@ const router = createRouter({
             component: () => import("~/login/index.vue")
         },
         {
+            path: '/profile',
+            name: 'Profile',
+            meta: {
+                title: 'common.profile',
+                hidden: true
+            },
+            component: () => import("~/profile/index.vue")
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
             meta: {

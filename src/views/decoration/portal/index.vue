@@ -1,7 +1,7 @@
 <template>
     <div class="p-4">
         <h1 class="text-2xl font-bold mb-4">{{ $t('decoration.decoration-portal') }}</h1>
-        <n-button @click="handleDetails">查看详情</n-button>
+        <n-button @click="handleDetails">{{ $t('common.view') }}</n-button>
     </div>
 </template>
 
