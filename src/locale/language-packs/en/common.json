@@ -12,6 +12,7 @@
     "view": "View",
     "open": "Open",
     "close": "Close",
+    "close-comment": "Are you sure to close the current page? Closing the page will lose all unsaved information. Please be careful!",
     "close-left": "Close Left",
     "close-right": "Close Right",
     "close-other": "Close Other",

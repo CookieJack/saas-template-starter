@@ -11,8 +11,9 @@
             <n-layout-content>
                 <n-card hoverable :bordered="true" size="small" content-style="padding: 0px">
                     <n-scrollbar x-scrollable>
-                        <n-tabs v-model:value="cachedViewsStore.activeViewPath" type="card" size="small"
-                            @update:value="handleTabChange" @close="handleTabClose">
+                        <n-tabs ref="tabsRef" v-model:value="cachedViewsStore.activeViewPath" type="card" size="small"
+                            @update:value="handleTabChange" @before-leave="handleTabBeforeLeave"
+                            @close="handleTabClose">
                             <n-tab v-for="view in cachedViewsStore.getCachedViews" :key="view.path" :name="view.path"
                                 :closable="!view.isAffix"
                                 @contextmenu="(e: MouseEvent) => handleTabContextMenu(e, view.path)">
@@ -22,9 +23,8 @@
                     </n-scrollbar>
                 </n-card>
                 <div class="p-2">
-                    <transition mode="out-in"
-                        enter-active-class="animate__animated animate__slideInLeft animate__faster"
-                        leave-active-class="animate__animated animate__slideOutLeft animate__faster">
+                    <transition mode="out-in" enter-active-class="animate__animated animate__slideInLeft"
+                        leave-active-class="animate__animated animate__slideOutLeft" :duration="300">
                         <router-view></router-view>
                     </transition>
                 </div>
@@ -44,6 +44,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { useDialog } from "naive-ui"
+import type { TabsInst } from "naive-ui"
 import { useI18n } from "vue-i18n"
 import {
     ArrowExportRtl20Regular as CloseLeftIcon,
@@ -61,11 +63,13 @@ import { useNaiveUIRender } from "@/hooks/useRender"
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
+const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
 const cachedViewsStore = useCachedViewsStore()
 const settingsStore = useSettingsStore()
 
 const sidebarRef = ref()
+const tabsRef = ref<TabsInst | null>(null)
 // 右键菜单状态
 const showContextMenu = ref(false)
 const contextMenuX = ref(0)
@@ -121,6 +125,33 @@ watch(
         })
     }
 )
+
+const handleTabBeforeLeave = (name: string | number, oldName: string | number | null) => {
+    return new Promise((resolve, reject) => {
+        if (route.path.includes(oldName as string) && route.meta?.hidden) {
+            const d = dialog.warning({
+                title: () => t('common.close'),
+                content: () => t('common.close-comment'),
+                positiveText: t('common.confirm'),
+                negativeText: t('common.cancel'),
+                style: {
+                    width: '20%',
+                    marginTop: '15vh'
+                },
+                onPositiveClick: () => {
+                    d.destroy()
+                    resolve(true)
+                },
+                onNegativeClick: () => {
+                    d.destroy()
+                    reject()
+                }
+            })
+        } else {
+            resolve(true)
+        }
+    })
+}
 
 // 标签页切换
 const handleTabChange = (path: string) => {
