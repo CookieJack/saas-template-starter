@@ -2,7 +2,7 @@
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
-                <h1 class="login-title">{{ $t('common.login') }}</h1>
+                <h1 class="login-title">{{ appStore.name }}</h1>
                 <p class="login-subtitle">{{ $t('common.welcome') }}</p>
             </div>
             <n-form ref="formRef" :model="form" :rules="rules" size="large">
@@ -36,13 +36,15 @@
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 import Cookies from "js-cookie"
+import useAppStore from "$/modules/app"
 import { PersonOutline as UserOutlined, KeyOutline as LockOutlined } from '@vicons/ionicons5'
 
 const router = useRouter()
 const route = useRoute()
+const appStore = useAppStore()
+
 const formRef = ref()
 const loading = ref(false)
-
 const form = reactive({
     username: 'admin',
     password: '123456'
@@ -104,8 +106,19 @@ const handleLogin = () => {
 .login-title {
     font-size: 28px;
     font-weight: 600;
-    color: #333;
+    color: #14b8a6;
     margin: 0 0 8px 0;
+    user-select: none;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 200px;
+        height: 2px;
+        background-color: #14b8a6;
+        border-radius: 2px;
+        margin: 0 auto 16px auto;
+    }
 }
 
 .login-subtitle {

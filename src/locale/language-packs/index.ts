@@ -5,8 +5,6 @@ import enHome from "./en/home.json"
 import zhDecoration from "./zh/decoration.json"
 import enDecoration from "./en/decoration.json"
 
-
-
 export default {
     zh: {
         common: zhCommon,
