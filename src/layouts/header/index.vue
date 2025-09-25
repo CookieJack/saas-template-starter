@@ -11,7 +11,7 @@
         </n-popselect>
         <n-button text @click="toggleFullscreen">
             <template #icon>
-                <n-icon :component="FullscreenIcon" />
+                <n-icon :component="isFullscreen ? ExitFullscreenIcon : FullscreenIcon" />
             </template>
         </n-button>
         <div class="container-right">
@@ -26,10 +26,10 @@
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { useDialog } from "naive-ui"
+import { useFullscreen } from "@vueuse/core"
 import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
-import { ExpandOutline as FullscreenIcon } from "@vicons/ionicons5"
+import { ExpandOutline as FullscreenIcon, ContractOutline as ExitFullscreenIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
-import { useFullscreen } from "@/hooks/useFullscreen"
 import useAppStore from "$/modules/app"
 import useUserStore from "$/modules/user"
 import useSettingsStore from "$/modules/settings"
@@ -44,7 +44,9 @@ const settingsStore = useSettingsStore()
 const cachedViewsStore = useCachedViewsStore()
 const dialog = useDialog()
 const { renderIcon } = useNaiveUIRender()
-const { toggleFullscreen } = useFullscreen()
+
+// 使用 useFullscreen 管理全屏状态
+const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
 const avatarOptions = [
     {
