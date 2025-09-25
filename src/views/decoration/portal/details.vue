@@ -1,4 +1,5 @@
 <template>
+  <h1>{{ $t('decoration.decoration-portal-details') }}</h1>
   <span>{{ $route.params.id }}</span>
   <n-button @click="handleBack">{{ $t('common.close') }}</n-button>
 </template>
