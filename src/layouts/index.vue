@@ -22,7 +22,7 @@
                         </n-tabs>
                     </n-scrollbar>
                 </n-card>
-                <n-layout embedded content-style="padding: 10px">
+                <n-layout embedded content-style="padding: 10px;height: calc(100vh - 145px);">
                     <n-layout-content>
                         <router-view v-slot="{ Component, route }">
                             <transition appear mode="out-in" :duration="{ enter: 300, leave: 300 }"
