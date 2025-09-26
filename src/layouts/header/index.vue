@@ -1,8 +1,8 @@
 <template>
     <div class="header-container">
-        <div class="container-left">
+        <div class="container-left transition-all hover:scale-110">
             <n-image preview-disabled :src="LogoImage" :width="30" :height="30" />
-            <span class="text-lg">{{ appStore.name }}</span>
+            <span class="text-lg select-none">{{ appStore.name }}</span>
         </div>
         <div class="flex-grow"></div>
         <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"

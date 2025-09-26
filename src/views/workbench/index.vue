@@ -1,11 +1,9 @@
 <template>
-    <div class="space-y-4">
-        <n-input v-model:value="inputValue" clearable />
-    </div>
+    <n-card :title="$t('home.workbench')"></n-card>
 </template>
-<script setup lang="ts">
-import { ref } from "vue"
 
-const inputValue = ref<string | null>(null)
+<script setup lang="ts">
+
 </script>
+
 <style scoped></style>

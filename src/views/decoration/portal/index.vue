@@ -1,8 +1,7 @@
 <template>
-    <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">{{ $t('decoration.decoration-portal') }}</h1>
+    <n-card :title="$t('decoration.decoration-portal')">
         <n-button @click="handleDetails">{{ $t('common.view') }}</n-button>
-    </div>
+    </n-card>
 </template>
 
 <script setup lang="ts">

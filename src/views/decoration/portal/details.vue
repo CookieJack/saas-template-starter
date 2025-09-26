@@ -1,6 +1,5 @@
 <template>
-  <n-card>
-    <h1>{{ $t('decoration.decoration-portal-details') }}</h1>
+  <n-card :title="$t('decoration.decoration-portal-details')">
     <span>{{ $route.params.id }}</span>
     <n-button @click="handleBack">{{ $t('common.close') }}</n-button>
   </n-card>
