@@ -4,6 +4,12 @@
             <n-image preview-disabled :src="LogoImage" :width="30" :height="30" />
             <span class="text-lg select-none">{{ appStore.name }}</span>
         </div>
+        <n-breadcrumb>
+            <n-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="index" :clickable="false">
+                <n-icon v-if="item.icon" :component="item.icon" class="mr-1" />
+                {{ $t(item.title) }}
+            </n-breadcrumb-item>
+        </n-breadcrumb>
         <div class="flex-grow"></div>
         <n-popselect v-model:value="settingsStore.locale" :options="localeOptions" trigger="hover"
             @update:value="handleUpdateLocale">
@@ -23,9 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+import { computed } from "vue"
+import { useRouter, useRoute } from "vue-router"
 import { useI18n } from "vue-i18n"
-import { useDialog } from "naive-ui"
+import { useDialog, NBreadcrumb, NBreadcrumbItem, NIcon } from "naive-ui"
 import { useFullscreen } from "@vueuse/core"
 import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
 import { ExpandOutline as FullscreenIcon, ContractOutline as ExitFullscreenIcon } from "@vicons/ionicons5"
@@ -38,6 +45,7 @@ import LogoImage from "@/assets/images/evo-v.jpeg"
 
 const { t, locale } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
@@ -47,6 +55,38 @@ const { renderIcon } = useNaiveUIRender()
 
 // 使用 useFullscreen 管理全屏状态
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
+
+// 计算面包屑数据
+interface BreadcrumbItem {
+    title: string
+    path?: string
+    icon?: any
+}
+
+const breadcrumbs = computed(() => {
+    const matched = route.matched.filter(item => item.meta?.title && !item.meta.hidden)
+    const result: BreadcrumbItem[] = []
+
+    matched.forEach((item, index) => {
+        // 跳过根路由和没有name的路由
+        if (item.path === '/' || item.name === 'Root' || !item.name) return
+
+        result.push({
+            title: item.meta.title as string,
+            path: index < matched.length - 1 ? (item.redirect as string || item.path) : undefined, // 最后一项不可点击
+            icon: item.meta.icon
+        })
+    })
+
+    return result
+})
+
+// 处理面包屑点击
+const handleBreadcrumbClick = (item: BreadcrumbItem) => {
+    if (item.path) {
+        router.push(item.path)
+    }
+}
 
 const avatarOptions = [
     {
@@ -124,6 +164,23 @@ const handleAvatarOptionSelect = (key: string | number) => {
         justify-content: space-between;
         align-items: center;
         gap: 10px;
+    }
+
+    /* 面包屑样式 */
+    :deep(.n-breadcrumb) {
+        margin-left: 20px;
+
+        .n-breadcrumb-item {
+            cursor: pointer;
+
+            &:last-child {
+                cursor: default;
+            }
+
+            &:hover:not(:last-child) {
+                color: var(--n-text-color-hover);
+            }
+        }
     }
 }
 </style>
