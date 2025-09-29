@@ -15,6 +15,11 @@
             @update:value="handleUpdateLocale">
             <n-button size="small">{{ $t(`common.${settingsStore.locale}`) }}</n-button>
         </n-popselect>
+        <n-button text @click="handleRefresh">
+            <template #icon>
+                <n-icon :component="RefreshOutlineIcon" />
+            </template>
+        </n-button>
         <n-button text @click="toggleFullscreen">
             <template #icon>
                 <n-icon :component="isFullscreen ? ExitFullscreenIcon : FullscreenIcon" />
@@ -34,7 +39,7 @@ import { useRouter, useRoute } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { useDialog, NBreadcrumb, NBreadcrumbItem, NIcon } from "naive-ui"
 import { useFullscreen } from "@vueuse/core"
-import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon } from "@vicons/ionicons5"
+import { PersonCircleOutline as PersonCircleOutlineIcon, LogOutOutline as LogOutOutlineIcon, RefreshOutline as RefreshOutlineIcon } from "@vicons/ionicons5"
 import { ExpandOutline as FullscreenIcon, ContractOutline as ExitFullscreenIcon } from "@vicons/ionicons5"
 import { useNaiveUIRender } from "@/hooks/useRender"
 import useAppStore from "$/modules/app"
@@ -115,6 +120,10 @@ const localeOptions = [
 const handleUpdateLocale = (value: string) => {
     settingsStore.locale = value
     locale.value = settingsStore.locale
+}
+
+const handleRefresh = () => {
+    router.replace({ path: '/redirect', query: { redirect: route.path + '&' + JSON.stringify(route.query) } })
 }
 
 const handleAvatarOptionSelect = (key: string | number) => {

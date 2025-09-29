@@ -82,6 +82,14 @@ const router = createRouter({
             ]
         },
         {
+            path: '/redirect',
+            name: 'Redirect',
+            meta: {
+                hidden: true
+            },
+            component: () => import("~/redirect/index")
+        },
+        {
             path: '/login',
             name: 'Login',
             meta: {
