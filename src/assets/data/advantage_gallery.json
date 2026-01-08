@@ -1,0 +1,87 @@
+{
+  "cmpType": 29,
+  "name": "优势展览",
+  "style": {
+    "color": {
+      "backgroundColor": "#74AA15",
+      "mainTitleColor": "#FFFFFF",
+      "subTitleColor": "#FFFFFF",
+      "contentItemTitleColor": "#FFFFFF",
+      "contentItemTitleBackDropColor": "#999999"
+    },
+    "size": {
+      "mainTitleSize": 35,
+      "subTitleSize": 20,
+      "contentItemTitleSize": 16
+    },
+    "weight": {
+      "mainTitleWeight": 700,
+      "subTitleWeight": 500,
+      "contentItemTitleWeight": 600
+    },
+    "position": {
+      "mainTitlePosition": "left",
+      "subTitlePosition": "left",
+      "contentItemTitlePosition": "center",
+      "footerBtnsPosition": "flex-end"
+    }
+  },
+  "content": {
+    "backImage": "",
+    "isFooterBtnsShow": true,
+    "footerBtns": [
+      {
+        "text": "了解更多",
+        "style": {
+          "backgroundColor": "#195D26",
+          "color": "#FFFFFF"
+        },
+        "link": "#"
+      },
+      {
+        "text": "合作咨询",
+        "style": {
+          "backgroundColor": "#407109",
+          "color": "#FFFFFF"
+        },
+        "link": "#"
+      }
+    ]
+  },
+  "title": "主标题",
+  "subtitle": "副标题",
+  "elements": [
+    {
+      "title": "主标题1",
+      "content": {
+        "image": "",
+        "link": "#"
+      },
+      "sort": 1
+    },
+    {
+      "title": "主标题2",
+      "content": {
+        "image": "",
+        "link": "#"
+      },
+      "sort": 2
+    },
+    {
+      "title": "主标题3",
+      "content": {
+        "image": "",
+        "link": "#"
+      },
+      "sort": 3
+    },
+    {
+      "title": "主标题4",
+      "content": {
+        "image": "",
+        "link": "#"
+      },
+      "sort": 4
+    }
+  ]
+}

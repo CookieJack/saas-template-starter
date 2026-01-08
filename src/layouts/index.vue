@@ -25,11 +25,7 @@
                 <n-layout embedded content-style="padding: 10px;height: calc(100vh - 145px);">
                     <n-layout-content>
                         <router-view v-slot="{ Component, route }">
-                            <transition appear mode="out-in" :duration="{ enter: 300, leave: 300 }"
-                                enter-active-class="animate__animated animate__slideInLeft"
-                                leave-active-class="animate__animated animate__slideOutLeft">
-                                <component :is="Component" :key="route.path" />
-                            </transition>
+                            <component :is="Component" :key="route.path" />
                         </router-view>
                     </n-layout-content>
                 </n-layout>
