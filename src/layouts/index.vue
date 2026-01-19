@@ -25,7 +25,9 @@
                 <n-layout embedded content-style="padding: 10px;height: calc(100vh - 145px);">
                     <n-layout-content>
                         <router-view v-slot="{ Component, route }">
-                            <component :is="Component" :key="route.path" />
+                            <transition name="slide-fade" mode="out-in">
+                                <component :is="Component" :key="route.path + (route.query._t || '')" />
+                            </transition>
                         </router-view>
                     </n-layout-content>
                 </n-layout>
@@ -230,4 +232,22 @@ const handleContextMenuSelect = (key: string) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.slide-fade-enter-active {
+    transition: all 0.6s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.4s ease-in;
+}
+
+.slide-fade-enter-from {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+.slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+</style>

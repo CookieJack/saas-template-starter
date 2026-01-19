@@ -123,7 +123,8 @@ const handleUpdateLocale = (value: string) => {
 }
 
 const handleRefresh = () => {
-    router.replace({ path: '/redirect', query: { redirect: route.path + '&' + JSON.stringify(route.query) } })
+    const timestamp = Date.now()
+    router.replace({ path: route.path, query: { ...route.query, _t: timestamp } })
 }
 
 const handleAvatarOptionSelect = (key: string | number) => {
