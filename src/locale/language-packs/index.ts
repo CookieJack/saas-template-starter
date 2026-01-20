@@ -4,6 +4,8 @@ import zhHome from "./zh/home.json"
 import enHome from "./en/home.json"
 import zhDecoration from "./zh/decoration.json"
 import enDecoration from "./en/decoration.json"
+import zhSys from "./zh/sys.json"
+import enSys from "./en/sys.json"
 import zhFb from "./zh/fb.json"
 import enFb from "./en/fb.json"
 
@@ -12,12 +14,14 @@ export default {
         common: zhCommon,
         home: zhHome,
         decoration: zhDecoration,
-        fb: zhFb
+        fb: zhFb,
+        sys: zhSys
     },
     en: {
         common: enCommon,
         home: enHome,
         decoration: enDecoration,
-        fb: enFb
+        fb: enFb,
+        sys: enSys
     }
 }

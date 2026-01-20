@@ -83,13 +83,24 @@ const router = createRouter({
             ]
         },
         {
-            path: '/form-builder',
-            name: 'FormBuilder',
+            path: '/system-tools',
+            name: 'SystemTools',
             meta: {
-                title: 'fb.builder',
+                title: 'sys.tools',
                 icon: BuildOutlineIcon
             },
-            component: () => import("~/form-builder/index.vue")
+            component: () => Layout,
+            children: [
+                {
+                    path: 'form-builder',
+                    name: 'FormBuilder',
+                    meta: {
+                        title: 'fb.builder',
+                        icon: BuildOutlineIcon
+                    },
+                    component: () => import("~/system-tools/form-builder/index.vue")
+                }
+            ]
         },
         {
             path: '/redirect',
