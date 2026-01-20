@@ -89,7 +89,7 @@ const router = createRouter({
                 title: 'sys.tools',
                 icon: BuildOutlineIcon
             },
-            component: () => Layout,
+            component: Layout,
             children: [
                 {
                     path: 'form-builder',
