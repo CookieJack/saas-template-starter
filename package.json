@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lljj/vue3-form-naive": "^1.19.1",
     "@unhead/vue": "^2.0.17",
     "@vicons/fluent": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",

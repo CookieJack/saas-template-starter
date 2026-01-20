@@ -4,16 +4,20 @@ import zhHome from "./zh/home.json"
 import enHome from "./en/home.json"
 import zhDecoration from "./zh/decoration.json"
 import enDecoration from "./en/decoration.json"
+import zhFb from "./zh/fb.json"
+import enFb from "./en/fb.json"
 
 export default {
     zh: {
         common: zhCommon,
         home: zhHome,
-        decoration: zhDecoration
+        decoration: zhDecoration,
+        fb: zhFb
     },
     en: {
         common: enCommon,
         home: enHome,
-        decoration: enDecoration
+        decoration: enDecoration,
+        fb: enFb
     }
 }

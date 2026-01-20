@@ -8,7 +8,8 @@ import Layout from "@/layouts/index.vue"
 import Cookies from "js-cookie"
 import {
     HomeOutline as HomeOutlineIcon,
-    LibraryOutline as LibraryOutlineIcon
+    LibraryOutline as LibraryOutlineIcon,
+    BuildOutline as BuildOutlineIcon
 } from "@vicons/ionicons5"
 
 const { loadingBar } = createDiscreteApi(["loadingBar"])
@@ -80,6 +81,15 @@ const router = createRouter({
                     component: () => import("~/decoration/portal/details.vue")
                 }
             ]
+        },
+        {
+            path: '/form-builder',
+            name: 'FormBuilder',
+            meta: {
+                title: 'fb.builder',
+                icon: BuildOutlineIcon
+            },
+            component: () => import("~/form-builder/index.vue")
         },
         {
             path: '/redirect',
