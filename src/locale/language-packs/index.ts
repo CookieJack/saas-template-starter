@@ -8,6 +8,8 @@ import zhSys from "./zh/sys.json"
 import enSys from "./en/sys.json"
 import zhFb from "./zh/fb.json"
 import enFb from "./en/fb.json"
+import zhRouterGen from "./zh/router-gen.json"
+import enRouterGen from "./en/router-gen.json"
 
 export default {
     zh: {
@@ -15,13 +17,15 @@ export default {
         home: zhHome,
         decoration: zhDecoration,
         fb: zhFb,
-        sys: zhSys
+        sys: zhSys,
+        routerGen: zhRouterGen
     },
     en: {
         common: enCommon,
         home: enHome,
         decoration: enDecoration,
         fb: enFb,
-        sys: enSys
+        sys: enSys,
+        routerGen: enRouterGen
     }
 }

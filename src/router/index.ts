@@ -9,8 +9,22 @@ import Cookies from "js-cookie"
 import {
     HomeOutline as HomeOutlineIcon,
     LibraryOutline as LibraryOutlineIcon,
-    BuildOutline as BuildOutlineIcon
+    BuildOutline as BuildOutlineIcon,
+    TrailSignOutline as TrailSignOutlineIcon
 } from "@vicons/ionicons5"
+
+export interface RouteRaw {
+    path: string,
+    name: string,
+    meta: {
+        title: string,
+        icon?: any,
+        isAffix?: boolean,
+        hidden?: boolean
+    },
+    component: Function | null,
+    children?: RouteRaw[]
+}
 
 const { loadingBar } = createDiscreteApi(["loadingBar"])
 
@@ -99,6 +113,25 @@ const router = createRouter({
                         icon: BuildOutlineIcon
                     },
                     component: () => import("~/system-tools/form-builder/index.vue")
+                },
+                {
+                    path: 'router-gen',
+                    name: 'RouterGenerator',
+                    meta: {
+                        title: 'routerGen.title',
+                        icon: TrailSignOutlineIcon
+                    },
+                    component: () => import("~/system-tools/router-generator/index.vue")
+                },
+                {
+                    path: 'router-gen/details',
+                    name: 'RouterGeneratorDetails',
+                    meta: {
+                        title: 'routerGen.details',
+                        icon: LibraryOutlineIcon,
+                        hidden: true
+                    },
+                    component: () => import("~/system-tools/router-generator/details.vue")
                 }
             ]
         },
