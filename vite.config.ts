@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import routerGeneratorPlugin from './vite-plugin-router-generator'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -94,7 +95,8 @@ export default defineConfig({
       },
       cache: false,
       cacheLocation: undefined
-    })
+    }),
+    routerGeneratorPlugin()
   ],
   build: {
     rollupOptions: {

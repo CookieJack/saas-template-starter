@@ -12,7 +12,7 @@
                         @update:value="handleUpdateParentName" clearable />
                 </n-input-group>
             </n-form-item>
-            <n-form-item label="菜单名称" path="title">
+            <n-form-item label="菜单名称" path="meta.title">
                 <n-input v-model:value="form.meta.title" placeholder="请输入菜单名称(国际化)" clearable>
                     <template #prefix>
                         <n-tag type="primary">{{ t(form.meta.title) || '请输入菜单名称' }}</n-tag>
@@ -48,7 +48,7 @@ import { ref, computed, reactive, h } from "vue"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import type { RouteRaw } from "@/router"
-import { NEl, type CascaderOption, type FormInst } from "naive-ui"
+import { NEl, useMessage, type CascaderOption, type FormInst } from "naive-ui"
 
 interface FormRouteRaw extends RouteRaw {
     parentName: string | null
@@ -56,13 +56,14 @@ interface FormRouteRaw extends RouteRaw {
 
 const { t } = useI18n()
 const router = useRouter()
+const message = useMessage()
 
 const formRef = ref<FormInst | null>(null)
 const pName = ref('请选择上级菜单')
 const prefixRoutePath = ref('')
 const form = reactive<FormRouteRaw>({
     parentName: null,
-    path: '',
+    path: '/index',
     name: '',
     component: null,
     meta: {
@@ -77,7 +78,7 @@ const vaildRoutes = computed(() => router.getRoutes().filter((item) => !!item.ch
 
 const rules = {
     parentName: [{ required: true, message: '请选择上级菜单', trigger: ['blur', 'change'] }],
-    title: [{ required: true, message: '请输入菜单名称(国际化)', trigger: ['blur'] }],
+    'meta.title': [{ required: true, message: '请输入菜单名称(国际化)', trigger: ['blur'] }],
     name: [{ required: true, message: '请输入路由名称', trigger: ['blur'] }],
     path: [{ required: true, message: '请输入路由路径', trigger: ['blur'] }]
 }
@@ -104,6 +105,12 @@ const handleUpdateParentName = (value: string | number | Array<string | number> 
 }
 
 const handleConfirm = () => {
-    
+    formRef.value?.validate(errors => {
+        if (!errors) {
+
+        } else {
+            message.error('请填写完整信息')
+        }
+    })
 }
 </script>
