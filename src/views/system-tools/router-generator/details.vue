@@ -63,7 +63,7 @@ const pName = ref('请选择上级菜单')
 const prefixRoutePath = ref('')
 const form = reactive<FormRouteRaw>({
     parentName: null,
-    path: '/index',
+    path: '',
     name: '',
     component: null,
     meta: {
@@ -107,7 +107,22 @@ const handleUpdateParentName = (value: string | number | Array<string | number> 
 const handleConfirm = () => {
     formRef.value?.validate(errors => {
         if (!errors) {
-
+            //读取本地工程目录下的views目录下的所有vue文件
+            const views = import.meta.glob('@/views/**/*.vue')
+            console.log(views[`/src/views${prefixRoutePath.value}${form.path}.vue`])
+            //判断form.path是否存在views目录下的vue文件
+            if (views[`/src/views${prefixRoutePath.value}${form.path}.vue`]) {
+                router.addRoute(form.parentName as string, {
+                    path: `${prefixRoutePath.value}${form.path}`,
+                    name: form.name,
+                    component: form.component,
+                    meta: form.meta
+                })
+                message.success('路由生成成功')
+                router.back()
+            } else {
+                message.error('路由路径不存在')
+            }
         } else {
             message.error('请填写完整信息')
         }

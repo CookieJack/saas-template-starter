@@ -22,7 +22,7 @@ export interface RouteRaw {
         isAffix?: boolean,
         hidden?: boolean
     },
-    component: Function | null,
+    component: any | null,
     children?: RouteRaw[]
 }
 
