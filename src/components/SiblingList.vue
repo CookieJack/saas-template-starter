@@ -11,10 +11,6 @@
 </template>
 
 <script setup lang="ts" generic="T extends { sort: number | string }">
-const emit = defineEmits<{
-    (e: 'click', item: T, index: number): void
-}>()
-
 const props = withDefaults(defineProps<{
     items: T[]
     direction?: 'up' | 'down' | 'left' | 'right'
@@ -31,6 +27,10 @@ const props = withDefaults(defineProps<{
     contentStyle: () => ({}),
     itemStyle: () => ({})
 })
+
+const emit = defineEmits<{
+    (e: 'click', item: T, index: number): void
+}>()
 
 const handleClick = (item: T, index: number) => {
     emit('click', item, index)
