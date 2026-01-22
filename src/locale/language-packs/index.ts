@@ -10,6 +10,10 @@ import zhFb from "./zh/fb.json"
 import enFb from "./en/fb.json"
 import zhRouterGen from "./zh/router-gen.json"
 import enRouterGen from "./en/router-gen.json"
+import zhComponents from "./zh/components.json"
+import enComponents from "./en/components.json"
+import zhCmpList from "./zh/cmp-list.json"
+import enCmpList from "./en/cmp-list.json"
 
 export default {
     zh: {
@@ -18,7 +22,9 @@ export default {
         decoration: zhDecoration,
         fb: zhFb,
         sys: zhSys,
-        routerGen: zhRouterGen
+        routerGen: zhRouterGen,
+        components: zhComponents,
+        cmpList: zhCmpList
     },
     en: {
         common: enCommon,
@@ -26,6 +32,8 @@ export default {
         decoration: enDecoration,
         fb: enFb,
         sys: enSys,
-        routerGen: enRouterGen
+        routerGen: enRouterGen,
+        components: enComponents,
+        cmpList: enCmpList
     }
 }

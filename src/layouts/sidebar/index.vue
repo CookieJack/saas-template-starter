@@ -8,7 +8,7 @@ import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import type { MenuOption, MenuInst } from "naive-ui"
 import { MenuOutline as MenuOutlineIcon } from "@vicons/ionicons5"
-import { useNaiveUIRender } from "@/hooks/useRender"
+import { useNaiveUIRender } from "@/composables/useRender"
 import useCachedViewsStore from "$/modules/cached-views"
 
 const cachedViewsStore = useCachedViewsStore()

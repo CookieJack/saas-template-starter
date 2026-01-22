@@ -9,8 +9,10 @@ import Cookies from "js-cookie"
 import {
     HomeOutline as HomeOutlineIcon,
     LibraryOutline as LibraryOutlineIcon,
+    ListOutline as ListOutlineIcon,
     BuildOutline as BuildOutlineIcon,
-    TrailSignOutline as TrailSignOutlineIcon
+    TrailSignOutline as TrailSignOutlineIcon,
+    HardwareChipOutline as HardwareChipOutlineIcon
 } from "@vicons/ionicons5"
 
 export interface RouteRaw {
@@ -132,6 +134,26 @@ const router = createRouter({
                         hidden: true
                     },
                     component: () => import("~/system-tools/router-generator/details.vue")
+                }
+            ]
+        },
+        {
+            path: '/components',
+            name: 'Components',
+            meta: {
+                title: 'components.title',
+                icon: HardwareChipOutlineIcon
+            },
+            component: Layout,
+            children: [
+                {
+                    path: 'cmp-list',
+                    name: 'CmpList',
+                    meta: {
+                        title: 'cmpList.title',
+                        icon: ListOutlineIcon
+                    },
+                    component: () => import('~/components/cmp-list/index.vue')
                 }
             ]
         },

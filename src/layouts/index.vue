@@ -61,7 +61,7 @@ import Footer from "./footer/index.vue"
 import Sidebar from "./sidebar/index.vue"
 import useCachedViewsStore from "$/modules/cached-views"
 import useSettingsStore from "$/modules/settings"
-import { useNaiveUIRender } from "@/hooks/useRender"
+import { useNaiveUIRender } from "@/composables/useRender"
 
 const route = useRoute()
 const router = useRouter()

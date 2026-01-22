@@ -1,8 +1,5 @@
 <template>
-    <n-card :title="$t('home.workbench')">
-        <p v-for="(paragraph, index) in testParagraphList" :key="index">
-            {{ paragraph }}
-        </p>
+    <n-card :title="$t('home.workbench')" hoverable :segmented="{ content: true, footer: 'soft' }">
     </n-card>
 </template>
 
@@ -19,4 +16,93 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.mt-8 {
+    margin-top: 32px;
+}
+
+.custom-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.custom-content {
+    flex: 1;
+}
+
+.custom-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.custom-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Direction Up Item */
+.direction-up-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #409eff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.item-content {
+    flex: 1;
+}
+
+/* Direction Down Item */
+.direction-down-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-description {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Direction Left Item */
+.direction-left-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Direction Right Item */
+.direction-right-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-icon {
+    font-size: 20px;
+}
+
+.item-text {
+    flex: 1;
+}
+</style>
