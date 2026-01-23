@@ -2,7 +2,7 @@
     <n-card title="交错动画列表" hoverable :segmented="{ content: true, footer: 'soft' }">
         <n-tabs type="line">
             <n-tab-pane name="up" tab="从下方进入 (默认)">
-                <SiblingList :items="listItems" :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
+                <BlindsList :items="listItems" :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
                     :item-style="{ background: '#f5f5f5', borderRadius: '8px', padding: '16px', marginBottom: '12px' }">
                     <template #default="{ item }">
                         <div class="direction-up-item">
@@ -10,10 +10,10 @@
                             <div class="item-content">{{ item.content }}</div>
                         </div>
                     </template>
-                </SiblingList>
+                </BlindsList>
             </n-tab-pane>
             <n-tab-pane name="down" tab="从上方进入">
-                <SiblingList :items="listItems" direction="down"
+                <BlindsList :items="listItems" direction="down"
                     :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
                     :item-style="{ background: '#e8f4f8', borderRadius: '8px', padding: '16px', marginBottom: '12px' }">
                     <template #default="{ item }">
@@ -22,10 +22,10 @@
                             <div class="item-description">Direction: Down</div>
                         </div>
                     </template>
-                </SiblingList>
+                </BlindsList>
             </n-tab-pane>
             <n-tab-pane name="left" tab="从右侧进入">
-                <SiblingList :items="listItems" direction="left"
+                <BlindsList :items="listItems" direction="left"
                     :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
                     :item-style="{ background: '#f8e8f4', borderRadius: '8px', padding: '16px', marginBottom: '12px' }">
                     <template #default="{ item }">
@@ -34,10 +34,10 @@
                             <span style="margin-left: 12px;">{{ item.content }}</span>
                         </div>
                     </template>
-                </SiblingList>
+                </BlindsList>
             </n-tab-pane>
             <n-tab-pane name="right" tab="从左侧进入">
-                <SiblingList :items="listItems" direction="right"
+                <BlindsList :items="listItems" direction="right"
                     :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
                     :item-style="{ background: '#f8f4e8', borderRadius: '8px', padding: '16px', marginBottom: '12px' }">
                     <template #default="{ item }">
@@ -46,10 +46,10 @@
                             <div class="item-text">{{ item.content }}</div>
                         </div>
                     </template>
-                </SiblingList>
+                </BlindsList>
             </n-tab-pane>
             <n-tab-pane name="custom" tab="自定义内容 (插槽)">
-                <SiblingList :items="listItems" :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
+                <BlindsList :items="listItems" :content-style="{ width: '100%', margin: '0 auto', padding: '20px' }"
                     :item-style="{ background: '#f5f5f5', borderRadius: '8px', padding: '16px', marginBottom: '12px' }">
                     <template #default="{ item }">
                         <div class="custom-item">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </template>
-                </SiblingList>
+                </BlindsList>
             </n-tab-pane>
         </n-tabs>
     </n-card>
